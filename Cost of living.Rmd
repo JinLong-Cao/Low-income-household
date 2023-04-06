@@ -1,0 +1,19 @@
+---
+title: "Cost of Living in Toronto For low-income household"
+output: pdf_document
+date: "2023-04-06"
+author: Jin Long Cao
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+Scenario 3 is the median income should be used as a comparator
+```{r}
+x <- read.csv("Data/2022 Income Scenario - With Subsidies.csv")
+y <- read.csv("Data/2022 Income Scenario - Without Subsidies, Average Rent.csv")
+z <- read.csv("Data/2022 Income Scenario - Without Subsidies, Market Rent.csv")
+```
+
