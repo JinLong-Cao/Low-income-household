@@ -7,11 +7,13 @@ author: Jin Long Cao
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# install.packages('plotrix')
+library(plotrix)
 ```
 
 ## intro
 Scenario 3 is the median income should be used as a comparator
-```{r}
+```{r import_Data}
 with_subsidies <- read.csv("Data/2022 Income Scenario - With Subsidies.csv")
 test <- read.csv("Data/2022 Income Scenario - With Subsidies.csv")
 y <- read.csv("Data/2022 Income Scenario - Without Subsidies, Average Rent.csv")
@@ -21,12 +23,12 @@ z <- read.csv("Data/2022 Income Scenario - Without Subsidies, Market Rent.csv")
 
 ## cleaning
 The current data are all character types which is difficult to manipulate. Part of the cleaning process it to turn all values numeric.
-```{r} 
+```{r char_to_num} 
 # This function:
 # changes null values/empty quotes to 0
 # remove "$" and "," and turn strings to numeric
 # Change x% to decimal
-char_to_int <- function(column) {
+char_to_num <- function(column) {
   counter <- 1 
   for (i in column){
     if (i == "" || i == " " || i == "   "){ ## Changing null values to $0
@@ -45,23 +47,23 @@ char_to_int <- function(column) {
 
 
 ```{r}
-with_subsidies$Scenario.1..Family.of.Four..Ontario.Works = char_to_int(with_subsidies$Scenario.1..Family.of.Four..Ontario.Works)
+with_subsidies$Scenario.1..Family.of.Four..Ontario.Works = char_to_num(with_subsidies$Scenario.1..Family.of.Four..Ontario.Works)
 
-with_subsidies$Scenario.2..Family.of.Four..Full.Time.Minimum.Wage.Earner = char_to_int(with_subsidies$Scenario.2..Family.of.Four..Full.Time.Minimum.Wage.Earner)
+with_subsidies$Scenario.2..Family.of.Four..Full.Time.Minimum.Wage.Earner = char_to_num(with_subsidies$Scenario.2..Family.of.Four..Full.Time.Minimum.Wage.Earner)
 
-with_subsidies$Scenario.3..Family.of.Four..Median.Income = char_to_int(with_subsidies$Scenario.3..Family.of.Four..Median.Income)
+with_subsidies$Scenario.3..Family.of.Four..Median.Income = char_to_num(with_subsidies$Scenario.3..Family.of.Four..Median.Income)
 
-with_subsidies$Scenario.4..Single.Parent.Household.with.2.Children..Ontario.Works = char_to_int(with_subsidies$Scenario.4..Single.Parent.Household.with.2.Children..Ontario.Works)
+with_subsidies$Scenario.4..Single.Parent.Household.with.2.Children..Ontario.Works = char_to_num(with_subsidies$Scenario.4..Single.Parent.Household.with.2.Children..Ontario.Works)
 
-with_subsidies$Scenario.5..One.person.Household..Ontario.Works = char_to_int(with_subsidies$Scenario.5..One.person.Household..Ontario.Works)
+with_subsidies$Scenario.5..One.person.Household..Ontario.Works = char_to_num(with_subsidies$Scenario.5..One.person.Household..Ontario.Works)
 
-with_subsidies$Scenario.6..One.Person.Household..Ontario.Disability.Support.Program = char_to_int(with_subsidies$Scenario.6..One.Person.Household..Ontario.Disability.Support.Program)
+with_subsidies$Scenario.6..One.Person.Household..Ontario.Disability.Support.Program = char_to_num(with_subsidies$Scenario.6..One.Person.Household..Ontario.Disability.Support.Program)
 
-with_subsidies$Scenario.7..One.Person.Household..Old.Age.Security..Guaranteed.Annual.Income.Supplement = char_to_int(with_subsidies$Scenario.7..One.Person.Household..Old.Age.Security..Guaranteed.Annual.Income.Supplement)
+with_subsidies$Scenario.7..One.Person.Household..Old.Age.Security..Guaranteed.Annual.Income.Supplement = char_to_num(with_subsidies$Scenario.7..One.Person.Household..Old.Age.Security..Guaranteed.Annual.Income.Supplement)
 
-with_subsidies$Scenario.8..Married.Couple..Ontario.Disability.Support.Program = char_to_int(with_subsidies$Scenario.8..Married.Couple..Ontario.Disability.Support.Program)
+with_subsidies$Scenario.8..Married.Couple..Ontario.Disability.Support.Program = char_to_num(with_subsidies$Scenario.8..Married.Couple..Ontario.Disability.Support.Program)
 
-with_subsidies$Scenario.9..Single.Person.Household..Full.Time.Minimum.Wage.Earner = char_to_int(with_subsidies$Scenario.9..Single.Person.Household..Full.Time.Minimum.Wage.Earner)
+with_subsidies$Scenario.9..Single.Person.Household..Full.Time.Minimum.Wage.Earner = char_to_num(with_subsidies$Scenario.9..Single.Person.Household..Full.Time.Minimum.Wage.Earner)
 
 
 # Scenarios <- list(with_subsidies$Scenario.1..Family.of.Four..Ontario.Works, with_subsidies$Scenario.2..Family.of.Four..Full.Time.Minimum.Wage.Earner, with_subsidies$Scenario.3..Family.of.Four..Median.Income, with_subsidies$Scenario.4..Single.Parent.Household.with.2.Children..Ontario.Works, with_subsidies$Scenario.5..One.person.Household..Ontario.Works, with_subsidies$Scenario.6..One.Person.Household..Ontario.Disability.Support.Program, with_subsidies$Scenario.7..One.Person.Household..Old.Age.Security..Guaranteed.Annual.Income.Supplement, with_subsidies$Scenario.8..Married.Couple..Ontario.Disability.Support.Program, with_subsidies$Scenario.9..Single.Person.Household..Full.Time.Minimum.Wage.Earner)
@@ -71,4 +73,19 @@ with_subsidies$Scenario.9..Single.Person.Household..Full.Time.Minimum.Wage.Earne
 #   print(i)
 # }
 ```
+
+
+## Identifying the main cost drivers
+
+
+
+
+
+
+
+
+
+
+
+
 
